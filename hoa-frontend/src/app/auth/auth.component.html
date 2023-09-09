@@ -9,7 +9,7 @@
 
   <!-- Login Form -->
   <div *ngIf="showLogIn">
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm" (ngSubmit)="logIn()">
       <div>
         <label for="email">Email</label>
         <input type="email" id="email" formControlName="email" required />
@@ -42,6 +42,10 @@
           formControlName="password"
           required
         />
+      </div>
+      <div>
+        <label for="signupName">Name</label>
+        <input type="name" id="signupName" formControlName="name" required />
       </div>
       <!-- Add more form controls for sign-up as needed -->
       <button type="submit">Sign Up</button>

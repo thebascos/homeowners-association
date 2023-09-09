@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MockDatabaseService } from '../Services/MockDataService';
+import { Router } from '@angular/router';
+import { HoService } from '../Services/ho.service';
 
 @Component({
   selector: 'app-auth',
@@ -8,15 +9,16 @@ import { MockDatabaseService } from '../Services/MockDataService';
   styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent {
-  showLogIn: boolean = true; 
+  showLogIn: boolean = true;
   showSignUp: boolean = false;
 
   loginForm: FormGroup;
   signUpForm: FormGroup;
 
   constructor(
+    private hoService: HoService,
     private formBuilder: FormBuilder,
-    private mockDatabaseService: MockDatabaseService
+    private router: Router
   ) {
     // Initialize login and sign-up forms with form controls
     this.loginForm = this.formBuilder.group({
@@ -27,16 +29,41 @@ export class AuthComponent {
     this.signUpForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      name: ['', [Validators.required]],
     });
   }
 
   signUp() {
     if (this.signUpForm.valid) {
       // Form is valid, store user data in the mock database
-      const { email, password } = this.signUpForm.value;
-      this.mockDatabaseService.addUser(email, password);
+      const { name, email, password } = this.signUpForm.value;
 
-      this.signUpForm.reset();
+      this.hoService.signUp$({ name, email, password }).subscribe(
+        () => {
+          this.signUpForm.reset();
+          this.router.navigate(['/home']);
+        },
+        () => {
+          console.log('error');
+        }
+      );
+    }
+  }
+  logIn() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.hoService.login$({ email, password }).subscribe(
+        (loggedIn) => {
+          if (loggedIn) {
+            this.loginForm.reset();
+            this.router.navigate(['/home']);
+          }
+        },
+        (error) => {
+          // Handle any errors that occurred during the login process
+          console.error('Login error:', error);
+        }
+      );
     }
   }
 }

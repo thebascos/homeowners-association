@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page/landing-page.component';
-import { AuthComponent } from './auth/auth.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MockDatabaseService } from './Services/MockDataService';
-import { BrowserModule } from '@angular/platform-browser';
+import { HomepageComponent } from './homepage/homepage.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'sign-up', component: AuthComponent },
+  { path: 'home', component: HomepageComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes),
-    ReactiveFormsModule,
-    FormsModule,
-    BrowserModule,
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [MockDatabaseService],
+  providers: [],
 })
 export class AppRoutingModule {}

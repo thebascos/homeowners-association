@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  postgres:
+    container_name: hoa_postgres
+    image: postgres:13
+    ports:
+      - 5432:5432
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=hoa
+      - POSTGRES_PASSWORD=hoa
+      - POSTGRES_DB=hoa
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    networks:
+      - postgres
+
+  pgadmin:
+    links:
+      - postgres:postgres
+    container_name: hoa_pgadmin
+    image: dpage/pgadmin4
+    ports:
+      - 8080:80
+    volumes:
+      - pg_admin_data:/root/.pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=hoa@hoa.com
+      - PGADMIN_DEFAULT_PASSWORD=hoa
+    networks:
+      - postgres
+
+volumes:
+  pg_data:
+  pg_admin_data:
+
+networks:
+  postgres:
+    driver: bridge

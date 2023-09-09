@@ -1,4 +1,7 @@
-<section class="landing">
+<section *ngIf="!signedIn.userIsSignedIn" class="landing">
+  <svg width="100" height="100">
+    <use xlink:href="hoa.svg"></use>
+  </svg>
   <h1>Welcome to the Homeowners Association</h1>
   <p>Your trusted community hub</p>
   <app-auth></app-auth>
