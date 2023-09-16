@@ -1,1 +1,94 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.my-class .log-in {
+  background-color: #c3b494;
+  width: 700px;
+  max-width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 3px, solid, black;
+}
+.my-class .sign-up {
+  background-color: #c3b494;
+  width: 700px;
+  max-width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 3px, solid, black;
+}
+
+.my-class h2 {
+  font-size: 50px; /* Adjust font size as needed */
+  font-weight: bold;
+  margin-bottom: 50px; /* Add spacing between h2 and form */
+  font-family: Arial, sans-serif;
+}
+
+.my-class form {
+  width: 100%; /* Make the form full width of the container */
+  max-width: 400px; /* Limit the form's width for readability */
+  text-align: center; /* Center the form content */
+}
+
+.my-class input {
+  width: 100%;
+  padding: 10px; /* Adjust padding for input fields */
+  margin-bottom: 20px; /* Add spacing between input fields */
+  border: none;
+  border-radius: 5px;
+}
+
+.my-class label {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.my-class button {
+  padding: 10px 20px; /* Adjust padding for the button */
+  background-color: #a7967b; /* Change the button's background color */
+  color: black; /* Change the text color */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Add a smooth transition effect */
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+.my-class button:hover {
+  background-color: #56483b; /* Change the background color on hover */
+}
+
+.error-message {
+  color: red;
+  animation: fadeOut 1s ease;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    display: none; /* Hide the element when the animation is complete */
+  }
+}

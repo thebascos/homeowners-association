@@ -1,0 +1,25 @@
+<div class="sign-up">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+    <div>
+      <label for="signupEmail">Email</label>
+      <input type="email" id="signupEmail" formControlName="email" required />
+    </div>
+    <div>
+      <label for="signupPassword">Password</label>
+      <input
+        type="password"
+        id="signupPassword"
+        formControlName="password"
+        required
+      />
+    </div>
+    <div>
+      <label for="signupName">Name</label>
+      <input type="text" id="signupName" formControlName="name" required />
+    </div>
+    <!-- Add more form controls for sign-up as needed -->
+    <button type="submit">Sign Up</button>
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+  </form>
+</div>

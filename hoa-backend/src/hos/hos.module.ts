@@ -4,6 +4,6 @@ import { HosService } from './hos.service';
 
 @Module({
   controllers: [HosController],
-  providers: [HosService]
+  providers: [HosService],
 })
 export class HosModule {}

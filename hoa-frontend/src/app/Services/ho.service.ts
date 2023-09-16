@@ -11,19 +11,24 @@ export class HoService {
   userIsSignedIn: boolean = false;
   constructor(readonly HttPClient: HttpClient) {}
 
-  public signUp$(signUp: SignUpDTO) {
+  public signUp$(signUpDTO: SignUpDTO) {
     this.userIsSignedIn = true;
-    return this.HttPClient.post('http://localhost:3000/auth/signup', signUp);
+    return this.HttPClient.post<{ access_token: string }>(
+      'http://localhost:3000/auth/signup',
+      signUpDTO
+    ).pipe(
+      map((response) => {
+        return response.access_token;
+      })
+    );
   }
   public login$(loginDTO: LogInDTO) {
-    // Assuming your server returns a boolean result for login success
-    return this.HttPClient.post<boolean>(
+    return this.HttPClient.post<{ access_token: string }>(
       'http://localhost:3000/auth/login',
       loginDTO
     ).pipe(
-      map((response: boolean) => {
-        this.userIsSignedIn = response;
-        return response;
+      map((response) => {
+        return response.access_token;
       })
     );
   }
