@@ -7,7 +7,7 @@ async function bootstrap() {
   app.enableCors({
     origin: process.env.FRONTEND_URL ?? 'http://localhost:4200',
   });
-  await app.listen(process.env.BASE_URL ?? 3000);
+  await app.listen(process.env.PORT ?? 3000);
 
   app.useGlobalFilters(new CustomExceptionFilter());
 }
