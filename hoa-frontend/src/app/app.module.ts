@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
@@ -13,6 +13,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserComponent } from './user/user.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomepageComponent,
     LoginComponent,
     SignupComponent,
+    UserComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CommonModule,
     MatDialogModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

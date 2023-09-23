@@ -1,0 +1,16 @@
+.home-page {
+  display: flex;
+  height: 100%;
+  width: auto;
+}
+.link-list-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30%;
+  border: 3px solid black;
+}
+/* .user-profile {
+    border: 3px solid yellow;
+    width: 50%;
+  } */

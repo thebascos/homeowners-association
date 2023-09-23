@@ -1,9 +1,10 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { LogInDTO } from './dto/login.dto';
 import { AuthService } from './auth.service';
 import { CustomExceptionFilter } from './dto/custom-exception.filter';
 import { UseFilters } from '@nestjs/common';
 import { SignUpDTO } from './dto/signup.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +17,13 @@ export class AuthController {
     const token = await this.authservice.generateToken(user);
     return token;
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('logout')
+  async logout() {
+    return { message: 'Logout successful' };
+  }
+
   @Post('/signup')
   async signup(
     @Body() signupDTO: SignUpDTO,

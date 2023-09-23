@@ -34,6 +34,13 @@ export class AuthService {
     }
   }
 
+  public async validateUserById(email: string) {
+    const user = await this.prisma.hO.findUnique({
+      where: { email: email },
+    });
+    return user;
+  }
+
   async generateToken(user: any) {
     const payload = { sub: user.id, email: user.email };
     return {

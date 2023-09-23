@@ -24,15 +24,12 @@ body {
   }
 }
 .parent-section {
-  background-color: #c3b494;
-  border: 3px solid black; /* Fix the syntax of the border property */
-  display: flex; /* Add display: flex to the parent section */
-  flex-direction: column; /* Stack child elements vertically */
+  display: flex; 
+  flex-direction: column; 
   height: 100%;
 }
 
-/* Add styles for the header */
 .lp-header {
   height: 80px;
-  border: 3px solid black; /* Add a border to the header for visibility */
+  border: 3px solid black; 
 }
