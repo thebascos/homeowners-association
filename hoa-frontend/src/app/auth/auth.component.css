@@ -1,0 +1,13 @@
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.auth button {
+  margin-right: 100px;
+  margin-top: 100px;
+  width: 100px;
+  height: 50px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  border: 3px solid black;
+  border-radius: 5px;
+}

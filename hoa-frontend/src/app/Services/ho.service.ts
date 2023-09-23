@@ -8,22 +8,28 @@ import { LogInDTO } from '../auth/dto/logindto';
   providedIn: 'root',
 })
 export class HoService {
+  baseUrl = process.env['BASE_URL'] ?? 'http://localhost:3000';
   userIsSignedIn: boolean = false;
   constructor(readonly HttPClient: HttpClient) {}
 
-  public signUp$(signUp: SignUpDTO) {
+  public signUp$(signUpDTO: SignUpDTO) {
     this.userIsSignedIn = true;
-    return this.HttPClient.post('http://localhost:3000/auth/signup', signUp);
+    return this.HttPClient.post<{ access_token: string }>(
+      `${this.baseUrl}/auth/signup`,
+      signUpDTO
+    ).pipe(
+      map((response) => {
+        return response.access_token;
+      })
+    );
   }
   public login$(loginDTO: LogInDTO) {
-    // Assuming your server returns a boolean result for login success
-    return this.HttPClient.post<boolean>(
-      'http://localhost:3000/auth/login',
+    return this.HttPClient.post<{ access_token: string }>(
+      `${this.baseUrl}/auth/login`,
       loginDTO
     ).pipe(
-      map((response: boolean) => {
-        this.userIsSignedIn = response;
-        return response;
+      map((response) => {
+        return response.access_token;
       })
     );
   }

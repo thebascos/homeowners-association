@@ -1,35 +1,62 @@
-import { Injectable } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LogInDTO } from './dto/login.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SignUpDTO } from './dto/signup.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly jwtService: JwtService,
+  ) {}
+
   public async validateUser(user: LogInDTO) {
     const existingUser = await this.prisma.hO.findUnique({
       where: { email: user.email },
     });
 
     if (!existingUser) {
-      // User with the provided email does not exist
-      return false; // or throw an error if you prefer
+      throw new NotFoundException('User does not exist');
     }
+
     if (user.password === existingUser.password) {
-      return true; // Password is correct, return the user object
+      // console.log(existingUser.email);
+      return existingUser;
     } else {
-      return false; // Password is incorrect
+      throw new UnauthorizedException('Wrong password!');
     }
   }
+
+  async generateToken(user: any) {
+    const payload = { sub: user.id, email: user.email };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
+  }
+
   public async addUser(user: SignUpDTO) {
-    if (user.password.length < 6 && !user.name) {
-      throw new Error('dapat greater than six choy aysig binogo');
+    const existingUser = await this.prisma.hO.findUnique({
+      where: { email: user.email },
+    });
+
+    if (existingUser) {
+      throw new HttpException(
+        'Email address is already in use',
+        HttpStatus.CONFLICT,
+      );
     }
-    await this.prisma.hO.create({
+
+    const newUser = await this.prisma.hO.create({
       data: { name: user.name, email: user.email, password: user.password },
     });
-  }
-  public findUser(id: string) {
-    this.prisma.hO.findUnique({ where: { id } });
+
+    return newUser;
   }
 }
