@@ -1,0 +1,14 @@
+.user-profile-ps {
+  display: flex;
+  justify-content: space-between;
+  font-size: 100px;
+}
+
+.left-content {
+  display: flex;
+  align-items: center; /* Center vertically within the flex container */
+}
+
+.right-content {
+  /* Add any additional styling for the right content if needed */
+}

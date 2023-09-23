@@ -7,6 +7,15 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.app-style {
+  background-color: #c3b494;
+
+  font-family: Arial, sans-serif;
+
+  .app-style-border {
+    border: 3px solid black;
+  }
+}
 
 .my-class .log-in {
   background-color: #c3b494;
@@ -89,6 +98,24 @@ body {
   }
   100% {
     opacity: 0;
-    display: none; /* Hide the element when the animation is complete */
+    display: none;
   }
+}
+
+.confirm-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 100px;
+  font-weight: bold;
+}
+.confirm-dialog-container button {
+  margin-right: 10px;
+  background-color: #a7967b;
+  color: black;
+}
+
+.center-content {
+  text-align: center;
 }
