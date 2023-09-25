@@ -1,9 +1,10 @@
-export interface SignUpDTO {
+export interface EditUserDTO {
+  name: string;
   email: string;
   password: string;
-  name: string;
   houseCode: HouseCode | null;
 }
+
 export enum HouseCode {
   HOUSE_1 = 'House 1',
   HOUSE_2 = 'House 2',

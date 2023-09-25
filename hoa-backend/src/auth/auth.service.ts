@@ -1,4 +1,5 @@
 import {
+  ConflictException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -9,6 +10,7 @@ import { LogInDTO } from './dto/login.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SignUpDTO } from './dto/signup.dto';
 import { JwtService } from '@nestjs/jwt';
+import { EditUserDTO } from './dto/edit-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -61,9 +63,47 @@ export class AuthService {
     }
 
     const newUser = await this.prisma.hO.create({
-      data: { name: user.name, email: user.email, password: user.password },
+      data: {
+        name: user.name,
+        email: user.email,
+        password: user.password,
+        houseCode: user.houseCode,
+      },
     });
 
     return newUser;
+  }
+
+  async updateUser(userId: string, user: EditUserDTO) {
+    const existingUser = await this.prisma.hO.findUnique({
+      where: { id: userId },
+    });
+
+    if (!existingUser) {
+      throw new NotFoundException('User not found');
+    }
+    const emailExists = await this.prisma.hO.findUnique({
+      where: { email: user.email },
+    });
+
+    if (emailExists && emailExists.id !== userId) {
+      throw new ConflictException('Email already exists');
+    }
+    if (user.name) {
+      existingUser.name = user.name;
+    }
+    if (user.email) {
+      existingUser.email = user.email;
+    }
+    if (user.password) {
+      existingUser.password = user.password;
+    }
+
+    const updatedUser = await this.prisma.hO.update({
+      where: { id: userId },
+      data: existingUser,
+    });
+
+    return updatedUser;
   }
 }

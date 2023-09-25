@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean {
-    const userIsSignedIn = /* Check if the user is signed in */ true; // Replace with your authentication logic
+    const userIsSignedIn = true;
 
     if (userIsSignedIn) {
       return true;

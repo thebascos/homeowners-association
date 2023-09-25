@@ -1,10 +1,18 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Put,
+  UseGuards,
+  Request,
+} from '@nestjs/common';
 import { LogInDTO } from './dto/login.dto';
 import { AuthService } from './auth.service';
 import { CustomExceptionFilter } from './dto/custom-exception.filter';
 import { UseFilters } from '@nestjs/common';
 import { SignUpDTO } from './dto/signup.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { EditUserDTO } from './dto/edit-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -32,5 +40,15 @@ export class AuthController {
     const user = await this.authservice.validateUser(signupDTO);
     const token = await this.authservice.generateToken(user);
     return token;
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Put('/update')
+  async updateUser(
+    @Request() req,
+    @Body() editUserDTO: EditUserDTO,
+  ): Promise<{ message: string }> {
+    await this.authservice.updateUser(req.user.id, editUserDTO);
+    return { message: 'User information updated successfully' };
   }
 }

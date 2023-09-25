@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { HoService } from 'src/app/Services/ho.service';
 
 @Component({
@@ -32,18 +33,10 @@ export class LoginComponent {
       this.hoService.login$({ email, password }).subscribe(
         (token) => {
           if (token) {
-            console.log(token);
-            // Store the token securely, e.g., in local storage
             localStorage.setItem('token', token);
-
-            // Emit a successful login event
             this.loginSuccess.emit(true);
-
-            // Reset the form and close the dialog
             this.loginForm.reset();
             this.dialogRef.close();
-
-            // Redirect the user to the desired page (e.g., '/home')
             this.router.navigate(['/home']);
           }
         },

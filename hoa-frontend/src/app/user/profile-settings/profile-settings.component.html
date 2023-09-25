@@ -1,0 +1,53 @@
+<div class="app-style my-class-log profile-settings">
+  <h2>Edit Profile</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input
+        class="my-class input"
+        type="text"
+        id="name"
+        name="name"
+        [(ngModel)]="user.name"
+        required
+      />
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input
+        class="my-class input"
+        type="email"
+        id="email"
+        name="email"
+        [(ngModel)]="user.email"
+        required
+      />
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input
+        class="my-class input"
+        type="password"
+        id="password"
+        name="password"
+        [(ngModel)]="user.password"
+        required
+      />
+    </div>
+    <div>
+      <label for="houseCode">House Code</label>
+      <input
+        class="my-class input"
+        type="text"
+        id="houseCode"
+        name="houseCode"
+        [(ngModel)]="user.houseCode"
+        readonly
+      />
+    </div>
+    <div>
+      <button type="submit">Save Changes</button>
+      <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
+    </div>
+  </form>
+</div>
