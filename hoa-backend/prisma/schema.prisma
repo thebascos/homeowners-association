@@ -18,5 +18,5 @@ model HO{
   name                      String
   email                     String @unique
   password                  String
-  houseCode                 String
+  houseCode                 String?
 }

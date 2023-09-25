@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "HO" ALTER COLUMN "houseCode" DROP NOT NULL;
