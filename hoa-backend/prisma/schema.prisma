@@ -10,6 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+
 model HO{
   id                        String   @id @default(uuid())
   createdAt                 DateTime @default(now())
@@ -17,4 +18,5 @@ model HO{
   name                      String
   email                     String @unique
   password                  String
+  houseCode                 String
 }

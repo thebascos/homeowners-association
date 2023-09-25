@@ -2,7 +2,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { HoService } from 'src/app/Services/ho.service';
+import { HouseCode } from '../dto/signupdto';
 
 @Component({
   selector: 'app-signup',
@@ -11,8 +13,9 @@ import { HoService } from 'src/app/Services/ho.service';
 export class SignupComponent {
   signUpForm: FormGroup;
   errorMessage?: string;
+  houseCodes = HouseCode;
 
-  @Output() signupSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() loginSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private hoService: HoService,
@@ -24,18 +27,22 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', [Validators.required]],
+      houseCode: ['', Validators.required],
     });
   }
 
   onSignUp() {
     if (this.signUpForm.valid) {
-      const { name, email, password } = this.signUpForm.value;
-      this.hoService.signUp$({ name, email, password }).subscribe(
-        () => {
-          this.signupSuccess.emit(true);
-          this.signUpForm.reset();
-          this.dialogRef.close(); // Close the signup dialog
-          this.router.navigate(['/home']);
+      const { name, email, password, houseCode } = this.signUpForm.value;
+      this.hoService.signUp$({ name, email, password, houseCode }).subscribe(
+        (token) => {
+          if (token) {
+            localStorage.setItem('token', token);
+            this.loginSuccess.emit(true);
+            this.signUpForm.reset();
+            this.dialogRef.close(); // Close the signup dialog
+            this.router.navigate(['/home']);
+          }
         },
         (errorResponse) => {
           this.errorMessage = errorResponse.error.message;

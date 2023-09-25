@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { UserService } from '../Services/user.service';
 import { SignUpDTO } from '../auth/dto/signupdto';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Observable, filter, map, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
+import { SharedService } from '../Services/shared.service';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 @Component({
   selector: 'app-user',
@@ -16,11 +18,13 @@ export class UserComponent implements OnInit {
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
-    this.userService.getUserProfile().subscribe((user) => {
+    this.sharedService.getUserProfile().subscribe((user) => {
       this.user = user;
     });
   }
@@ -41,9 +45,14 @@ export class UserComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        console.log('natawag');
         localStorage.removeItem('token');
         this.router.navigate(['/']);
       });
+  }
+
+  openProfileSettings(): void {
+    const dialogRef = this.dialog.open(ProfileSettingsComponent, {});
+
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

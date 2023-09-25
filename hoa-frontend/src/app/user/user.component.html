@@ -7,7 +7,10 @@
           <strong> {{ user?.name }} </strong>
         </span>
         <span class="right-content">
-          <mat-icon matTooltip="Settings" aria-label="settings"
+          <mat-icon
+            (click)="openProfileSettings()"
+            matTooltip="Settings"
+            aria-label="settings"
             >settings</mat-icon
           >
           <mat-icon
@@ -20,10 +23,5 @@
         </span>
       </div>
     </div>
-
-    <p>
-      <mat-icon>email </mat-icon>
-      <strong> {{ user?.email }} </strong>
-    </p>
   </div>
 </div>

@@ -2,6 +2,10 @@
   <h2>Sign Up</h2>
   <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
     <div>
+      <label for="signupName">Name</label>
+      <input type="text" id="signupName" formControlName="name" required />
+    </div>
+    <div>
       <label for="signupEmail">Email</label>
       <input type="email" id="signupEmail" formControlName="email" required />
     </div>
@@ -15,10 +19,14 @@
       />
     </div>
     <div>
-      <label for="signupName">Name</label>
-      <input type="text" id="signupName" formControlName="name" required />
+      <label for="houseCode">Selecct House number</label>
+      <select id="houseCode" formControlName="houseCode" required>
+        <option value="" disabled>Select an option</option>
+        <option [value]="houseCodes.HOUSE_1">House 1</option>
+        <option [value]="houseCodes.HOUSE_2">House 2</option>
+        <option [value]="houseCodes.HOUSE_3">House 3</option>
+      </select>
     </div>
-    <!-- Add more form controls for sign-up as needed -->
     <button type="submit">Sign Up</button>
     <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
   </form>

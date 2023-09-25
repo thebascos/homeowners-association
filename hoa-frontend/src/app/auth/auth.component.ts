@@ -15,20 +15,12 @@ export class AuthComponent {
     const dialogRef = this.dialog.open(LoginComponent, {
       panelClass: 'my-class',
     });
-
-    // You can subscribe to dialog events if needed
-    dialogRef.afterClosed().subscribe((result) => {
-      // Handle dialog close event if necessary
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
   openSignUpDialog() {
     const dialogRef = this.dialog.open(SignupComponent, {
       panelClass: 'my-class',
     });
-
-    // You can subscribe to dialog events if needed
-    dialogRef.afterClosed().subscribe((result) => {
-      // Handle dialog close event if necessary
-    });
+    dialogRef.afterClosed().subscribe((result) => {});
   }
 }

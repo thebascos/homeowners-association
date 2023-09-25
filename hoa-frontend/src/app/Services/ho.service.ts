@@ -4,6 +4,7 @@ import { SignUpDTO } from '../auth/dto/signupdto';
 import { map } from 'rxjs';
 import { LogInDTO } from '../auth/dto/logindto';
 import { environment } from 'src/environment/environment';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
