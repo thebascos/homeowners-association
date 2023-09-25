@@ -7,14 +7,11 @@ export class AuthenticationService {
   private loggedIn = false;
 
   constructor() {
-    // Check for token in localStorage during service initialization
     const token = localStorage.getItem('token');
     if (token) {
-      this.loggedIn = true; // User is authenticated
+      this.loggedIn = true;
     }
   }
-
-  // ... rest of your AuthenticationService code ...
 
   isLoggedIn(): boolean {
     return this.loggedIn;

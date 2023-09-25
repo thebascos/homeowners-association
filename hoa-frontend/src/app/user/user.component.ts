@@ -5,9 +5,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Observable, filter, map, switchMap, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../Services/authentication.service';
-import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 import { SharedService } from '../Services/shared.service';
+import { ProfileSettingsComponent } from './profile-settings/profile-settings.component';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +26,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.sharedService.getUserProfile().subscribe((user) => {
       this.user = user;
-      console.log('User information in user component:', this.user);
     });
   }
   openConfirmDialog(): void {
