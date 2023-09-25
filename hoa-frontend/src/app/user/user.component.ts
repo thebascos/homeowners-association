@@ -26,6 +26,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     this.sharedService.getUserProfile().subscribe((user) => {
       this.user = user;
+      console.log('User information in user component:', this.user);
     });
   }
   openConfirmDialog(): void {
