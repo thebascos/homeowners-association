@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { HoService } from 'src/app/Services/ho.service';
 
 @Component({
@@ -34,7 +33,6 @@ export class LoginComponent {
         (token) => {
           if (token) {
             localStorage.setItem('token', token);
-            this.loginSuccess.emit(true);
             this.loginForm.reset();
             this.dialogRef.close();
             this.router.navigate(['/home']);

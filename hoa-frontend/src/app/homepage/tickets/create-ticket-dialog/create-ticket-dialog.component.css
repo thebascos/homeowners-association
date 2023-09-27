@@ -1,0 +1,10 @@
+.editable-paragraph {
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
+  width: 100%; /* Make sure it takes up the full width of the container */
+}

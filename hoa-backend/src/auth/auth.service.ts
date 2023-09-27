@@ -106,4 +106,22 @@ export class AuthService {
 
     return updatedUser;
   }
+
+  async getTicketsByUserId(userId: string) {
+    try {
+      console.log('buang si princh ');
+      const tickets = await this.prisma.ticket.findMany({
+        include: {
+          ho: true,
+        },
+        where: {
+          hoId: userId,
+        },
+      });
+      console.log('Fetched tickets:', tickets);
+      return tickets;
+    } catch (error) {
+      throw new Error('na log out or something?');
+    }
+  }
 }

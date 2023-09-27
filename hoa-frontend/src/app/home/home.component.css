@@ -1,0 +1,12 @@
+.flex-container {
+  display: flex;
+  height: 100%;
+}
+
+.app-homepage {
+  flex-grow: 2; /* 40% of the space */
+}
+
+.router-outlet {
+  flex-grow: 5; /* The rest of the space (60%) */
+}

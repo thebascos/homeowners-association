@@ -1,27 +1,24 @@
 <div class="user-profile">
-  <div class="user-details app-style">
-    <div class="user-profile-ps">
-      <div class="left-content user-profile-ps">
-        <span>
-          <mat-icon>person</mat-icon>
-          <strong> {{ user?.name }} </strong>
-        </span>
-        <span class="right-content">
-          <mat-icon
-            (click)="openProfileSettings()"
-            matTooltip="Settings"
-            aria-label="settings"
-            >settings</mat-icon
-          >
-          <mat-icon
-            (click)="openConfirmDialog()"
-            matTooltip="Logout"
-            aria-label="Logout"
-          >
-            exit_to_app
-          </mat-icon>
-        </span>
-      </div>
-    </div>
+  <div class="user-profile-ps">
+    <span>
+      <mat-icon>person</mat-icon>
+      <strong> {{ user?.name }} </strong>
+    </span>
+  </div>
+  <div class="right-content">
+    <span>
+      <mat-icon
+        (click)="openProfileSettings()"
+        matTooltip="Settings"
+        aria-label="settings"
+        >settings</mat-icon
+      >
+      <mat-icon
+        (click)="openConfirmDialog()"
+        matTooltip="Logout"
+        aria-label="Logout"
+        >exit_to_app</mat-icon
+      >
+    </span>
   </div>
 </div>

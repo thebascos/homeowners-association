@@ -1,16 +1,44 @@
+/* Apply flexbox to the .home-page container */
 .home-page {
-  display: flex;
   height: 100%;
-  width: auto;
 }
+
+/* Keep the existing styles for .link-list-section */
 .link-list-section {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Change to a column layout */
   justify-content: space-between;
-  width: 30%;
-  border: 3px solid black;
+  border: 3px solid black; /* Retain the border */
 }
-/* .user-profile {
-    border: 3px solid yellow;
-    width: 50%;
-  } */
+
+/* Style the navigation menu */
+.link-list-section .nav-menu {
+  list-style: none;
+  margin: 10px 0; /* Add 10px margin top and bottom */
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* Display the links in a column */
+}
+
+.link-list-section .nav-menu li {
+  margin-bottom: 10px; /* Add 5px spacing between menu items */
+  margin-left: 20px;
+}
+
+/* Style the links */
+.link-list-section .nav-menu a {
+  text-decoration: none;
+  color: #333; /* Adjust the link color as needed */
+  font-family: Arial, sans-serif; /* Set the font family to Arial */
+  font-size: 20px; /* Set the font size to 20px */
+  font-weight: bold; /* Adjust the font-weight as needed */
+}
+.active {
+  color: blue; /* Change the color to gray for active links */
+  font-weight: bold; /* You can add additional styles as needed */
+}
+
+/* Style the user profile component */
+.link-list-section .user-profile {
+  /* Add any specific styles you want for the user profile component */
+}
