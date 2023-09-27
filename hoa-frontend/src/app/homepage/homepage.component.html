@@ -1,8 +1,38 @@
-<div class="home-page app-style">
-  <div class="link-list-section">
-    <div></div>
-    <div>
-      <app-user class="user-profile"></app-user>
-    </div>
+<div class="home-page app-style link-list-section">
+  <div>
+    <ul class="nav-menu">
+      <div>
+        <!-- Dashboard Link -->
+        <li>
+          <a [routerLink]="['/home']" routerLinkActive="active">Dashboard</a>
+        </li>
+      </div>
+      <div>
+        <li>
+          <a [routerLink]="['/tickets']" routerLinkActive="active">Tickets</a>
+        </li>
+      </div>
+      <div>
+        <li>
+          <a [routerLink]="['/tickets']" routerLinkActive="active">Events</a>
+        </li>
+      </div>
+      <div>
+        <li>
+          <a [routerLink]="['/tickets']" routerLinkActive="active">Bills</a>
+        </li>
+      </div>
+      <div>
+        <li>
+          <a [routerLink]="['/tickets']" routerLinkActive="active"
+            >Community Market</a
+          >
+        </li>
+      </div>
+    </ul>
+  </div>
+  <div>
+    <!-- User Profile Component -->
+    <app-user class="user-profile"></app-user>
   </div>
 </div>

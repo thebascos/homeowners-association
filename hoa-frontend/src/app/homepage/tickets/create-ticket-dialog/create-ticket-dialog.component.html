@@ -1,0 +1,42 @@
+<mat-card style="background-color: #c3b494; font-family: Arial, sans-serif">
+  <mat-card-title style="margin-left: 10px; margin-top: 10px">
+    Create a New Ticket</mat-card-title
+  >
+  <mat-card-content>
+    <form
+      [formGroup]="ticketForm"
+      (ngSubmit)="submitTicket()"
+      class="form-container"
+    >
+      <div class="form-group">
+        <select id="category" formControlName="category" class="app-style">
+          <option>MAINTENANCE</option>
+          <option>COMPLAINT</option>
+        </select>
+      </div>
+      <div class="form-group editable-paragraph input">
+        <textarea
+          style="font-family: Arial, sans-serif; background-color: #c3b494"
+          matInput
+          placeholder="Description"
+          formControlName="description"
+          required
+          rows="4"
+        ></textarea>
+      </div>
+      <div class="form-group ticket-submit">
+        <button
+          class="app-style"
+          type="submit"
+          style="
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            border-radius: 7px;
+          "
+        >
+          Create ticket
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

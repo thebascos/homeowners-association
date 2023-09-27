@@ -17,6 +17,12 @@ import { UserComponent } from './user/user.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { ProfileSettingsComponent } from './user/profile-settings/profile-settings.component';
+import { TicketsComponent } from './homepage/tickets/tickets.component';
+import { HomeComponent } from './home/home.component';
+import { MatCardModule } from '@angular/material/card';
+import { CreateTicketDialogComponent } from './homepage/tickets/create-ticket-dialog/create-ticket-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,9 @@ import { ProfileSettingsComponent } from './user/profile-settings/profile-settin
     UserComponent,
     ConfirmDialogComponent,
     ProfileSettingsComponent,
+    TicketsComponent,
+    HomeComponent,
+    CreateTicketDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +50,9 @@ import { ProfileSettingsComponent } from './user/profile-settings/profile-settin
     MatIconModule,
     MatTooltipModule,
     FormsModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

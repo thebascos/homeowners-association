@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/Services/authentication.service';
 import { HoService } from 'src/app/Services/ho.service';
 import { HouseCode } from '../dto/signupdto';
 
@@ -14,8 +13,6 @@ export class SignupComponent {
   signUpForm: FormGroup;
   errorMessage?: string;
   houseCodes = HouseCode;
-
-  @Output() loginSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(
     private hoService: HoService,
@@ -38,7 +35,6 @@ export class SignupComponent {
         (token) => {
           if (token) {
             localStorage.setItem('token', token);
-            this.loginSuccess.emit(true);
             this.signUpForm.reset();
             this.dialogRef.close(); // Close the signup dialog
             this.router.navigate(['/home']);

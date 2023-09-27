@@ -1,0 +1,43 @@
+.ticket-page {
+  height: 100%;
+  width: 100%;
+}
+.link-list-section {
+  border: 3px solid black;
+}
+/* Custom CSS class for the card container */
+.card-container {
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: column; /* Arrange cards vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100%;
+}
+
+/* Custom CSS class for styling mat-card elements */
+.custom-card {
+  background-color: #a7967b; /* Set the background color */
+  margin: 10px; /* Add margin to space cards 10px apart */
+  width: 500px; /* Set the custom width */
+}
+
+/* Custom CSS class for the ticket details container */
+.ticket-details {
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: column; /* Arrange elements vertically */
+}
+
+/* Custom CSS class for the category element */
+.category {
+  align-self: flex-end; /* Align the category to the right within the container */
+  margin-top: auto; /* Push the category to the bottom of the container */
+}
+.create-ticket-button {
+  background-color: #a7967b; /* Background color */
+  margin-top: 70px; /* Add spacing below the button */
+  margin-right: 40px; /* Add spacing to the right of the button */
+  float: right; /* Align the button to the right */
+  border-radius: 10px; /* Make the button circular */
+  padding: 15px 30px; /* Increase padding to make the button larger */
+  font-size: 15px;
+}

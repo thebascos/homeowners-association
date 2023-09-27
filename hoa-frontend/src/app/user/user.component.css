@@ -1,3 +1,4 @@
-.right-content {
-  /* Add any additional styling for the right content if needed */
+.user-profile {
+  display: flex;
+  justify-content: space-between;
 }

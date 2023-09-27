@@ -4,7 +4,6 @@ import { SignUpDTO } from '../auth/dto/signupdto';
 import { map } from 'rxjs';
 import { LogInDTO } from '../auth/dto/logindto';
 import { environment } from 'src/environment/environment';
-import { AuthenticationService } from './authentication.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +13,6 @@ export class HoService {
   constructor(readonly HttPClient: HttpClient) {}
 
   public signUp$(signUpDTO: SignUpDTO) {
-    this.userIsSignedIn = true;
     return this.HttPClient.post<{ access_token: string }>(
       `${environment.baseUrl}/auth/signup`,
       signUpDTO
