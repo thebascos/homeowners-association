@@ -1,15 +1,26 @@
 <div class="home-page app-style link-list-section">
-  <div>
+  <div class="home-page-header">
+    <img src="./assets/images/hoa.png" alt="" style="height: 6rem" />
+    <div class="landing-page-header">
+      <h1 class="lp-title">Welcome to HOA Hub</h1>
+      <p class="lp-subtitle">Your trusted community hub</p>
+    </div>
+  </div>
+  <div class="list-section">
     <ul class="nav-menu">
       <div>
         <!-- Dashboard Link -->
         <li>
-          <a [routerLink]="['/home']" routerLinkActive="active">Dashboard</a>
+          <a [routerLink]="['/home/dashboard']" routerLinkActive="active"
+            >Dashboard</a
+          >
         </li>
       </div>
       <div>
         <li>
-          <a [routerLink]="['/tickets']" routerLinkActive="active">Tickets</a>
+          <a [routerLink]="['/home/tickets']" routerLinkActive="active"
+            >Tickets</a
+          >
         </li>
       </div>
       <div>

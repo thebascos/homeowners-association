@@ -6,21 +6,20 @@ import { AuthGuard } from './auth/auth.guard';
 import { ProfileSettingsComponent } from './user/profile-settings/profile-settings.component';
 import { TicketsComponent } from './homepage/tickets/tickets.component';
 import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './homepage/dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'profile-settings', component: ProfileSettingsComponent },
   { path: 'home-page', component: HomepageComponent, canActivate: [AuthGuard] },
-  { path: 'home', component: HomeComponent },
   {
-    path: 'tickets',
-    component: HomeComponent, // Use the layout component
+    path: 'home',
+    component: HomeComponent,
     children: [
-      {
-        path: '',
-        component: TicketsComponent, // This is where TicketsComponent will be displayed
-      },
-      // Add more child routes if needed
+      // Redirect the default route of 'home' to 'dashboard'
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: DashboardComponent },
+      { path: 'tickets', component: TicketsComponent },
     ],
   },
 ];

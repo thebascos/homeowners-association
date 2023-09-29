@@ -19,6 +19,7 @@
   background-color: #a7967b; /* Set the background color */
   margin: 10px; /* Add margin to space cards 10px apart */
   width: 500px; /* Set the custom width */
+  white-space: normal;
 }
 
 /* Custom CSS class for the ticket details container */
@@ -40,4 +41,34 @@
   border-radius: 10px; /* Make the button circular */
   padding: 15px 30px; /* Increase padding to make the button larger */
   font-size: 15px;
+}
+.ticket-description {
+  word-wrap: break-word;
+  background-color: #a7967b; /* Set the same background color as the card */
+  border: none; /* Remove input border */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add border radius for a rounded appearance */
+  font-size: 14px; /* Adjust font size as needed */
+}
+.ticket-description-input:focus {
+  outline: none;
+}
+.edit-button {
+  background-color: #a7967b; /* Set the same background color as the card */
+  border: none; /* Remove button border */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  padding: 5px 10px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add border radius for a rounded appearance */
+  font-size: 14px; /* Adjust font size as needed */
+}
+
+.edit-button:hover {
+  background-color: #a7967b; /* Change background color on hover if desired */
+}
+.custom-card .date-created {
+  position: absolute;
+  top: 10px; /* Adjust the top distance as needed */
+  right: 10px; /* Adjust the right distance as needed */
+  font-size: 14px; /* Adjust the font size as needed */
+  color: #333; /* Adjust the color as needed */
 }

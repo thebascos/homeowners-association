@@ -1,0 +1,20 @@
+.dashboard {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 150px;
+  border: 3px solid black;
+  height: 50%;
+  width: 40%;
+  border-radius: 2rem;
+}
+.dashboard-box {
+  margin-top: 30px;
+}

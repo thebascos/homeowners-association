@@ -1,6 +1,7 @@
 .flex-container {
   display: flex;
   height: 100%;
+  width: 100%;
 }
 
 .app-homepage {
@@ -9,4 +10,5 @@
 
 .router-outlet {
   flex-grow: 5; /* The rest of the space (60%) */
+  height: 100%;
 }

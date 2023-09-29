@@ -68,6 +68,7 @@ export class AuthService {
         email: user.email,
         password: user.password,
         houseCode: user.houseCode,
+        admin: user.admin,
       },
     });
 
@@ -109,7 +110,6 @@ export class AuthService {
 
   async getTicketsByUserId(userId: string) {
     try {
-      console.log('buang si princh ');
       const tickets = await this.prisma.ticket.findMany({
         include: {
           ho: true,
@@ -118,7 +118,6 @@ export class AuthService {
           hoId: userId,
         },
       });
-      console.log('Fetched tickets:', tickets);
       return tickets;
     } catch (error) {
       throw new Error('na log out or something?');

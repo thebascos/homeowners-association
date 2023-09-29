@@ -16,6 +16,9 @@ body {
     border: 3px solid black;
   }
 }
+.app-border {
+  border: 3px solid black;
+}
 
 .my-class .log-in {
   background-color: #c3b494;
@@ -49,7 +52,7 @@ body {
 .my-class h2 {
   font-size: 50px; /* Adjust font size as needed */
   font-weight: bold;
-  margin-bottom: 50px; /* Add spacing between h2 and form */
+  margin-bottom: 30px; /* Add spacing between h2 and form */
   font-family: Arial, sans-serif;
 }
 
@@ -62,7 +65,7 @@ body {
 .my-class input {
   width: 100%;
   padding: 10px; /* Adjust padding for input fields */
-  margin-bottom: 20px; /* Add spacing between input fields */
+  margin-bottom: 10px; /* Add spacing between input fields */
   border: none;
   border-radius: 5px;
 }
@@ -155,4 +158,17 @@ body {
 .ticket-submit {
   text-align: center;
   flex-grow: 1;
+  background-color: #c3b494;
+}
+.profile-settings-parent {
+  height: 420px;
+  width: 500px;
+  background-color: lightgray;
+}
+.profile-settings {
+  display: flex;
+  flex-direction: column;
+}
+.custom-input {
+  width: 100%;
 }

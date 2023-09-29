@@ -7,7 +7,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -23,6 +23,9 @@ import { MatCardModule } from '@angular/material/card';
 import { CreateTicketDialogComponent } from './homepage/tickets/create-ticket-dialog/create-ticket-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatMenuModule } from '@angular/material/menu';
+import { DashboardComponent } from './homepage/dashboard/dashboard/dashboard.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,7 @@ import { MatMenuModule } from '@angular/material/menu';
     TicketsComponent,
     HomeComponent,
     CreateTicketDialogComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,8 +57,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatCardModule,
     MatFormFieldModule,
     MatMenuModule,
+    MatInputModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

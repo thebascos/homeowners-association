@@ -9,4 +9,5 @@ export interface SignUpDTO {
   password: string;
   name: string;
   houseCode: HouseCode;
+  admin: boolean;
 }

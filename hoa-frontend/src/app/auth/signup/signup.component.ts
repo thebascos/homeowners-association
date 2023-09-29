@@ -24,14 +24,26 @@ export class SignupComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', [Validators.required]],
-      houseCode: ['', Validators.required],
+      houseCode: [''], // Remove Validators.required for houseCode
+      admin: [false],
     });
   }
 
   onSignUp() {
     if (this.signUpForm.valid) {
-      const { name, email, password, houseCode } = this.signUpForm.value;
-      this.hoService.signUp$({ name, email, password, houseCode }).subscribe(
+      const { name, email, password, admin, houseCode } = this.signUpForm.value;
+      console.log('Form values:', { name, email, password, admin, houseCode });
+
+      // Check if houseCode is empty, and if so, set it to null
+      const signUpData = {
+        name,
+        email,
+        password,
+        admin,
+        houseCode: houseCode || null,
+      };
+
+      this.hoService.signUp$(signUpData).subscribe(
         (token) => {
           if (token) {
             localStorage.setItem('token', token);

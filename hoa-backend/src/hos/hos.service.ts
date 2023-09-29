@@ -13,11 +13,31 @@ export class HosService {
           description: ticket.description,
           category: ticket.category,
           hoId: hoId,
+          createdAt: ticket.createdAt,
         },
       });
       return newTicket;
     } catch (error) {
       throw new Error('Failed to create a ticket');
+    }
+  }
+
+  async updateTicket(ticketId: string, ticket: CreateTicketDTO): Promise<any> {
+    try {
+      const updatedTicket = await this.prismaService.ticket.update({
+        where: {
+          id: ticketId,
+        },
+        data: {
+          description: ticket.description,
+          category: ticket.category,
+          status: ticket.status,
+          createdAt: ticket.createdAt,
+        },
+      });
+      return updatedTicket;
+    } catch (error) {
+      throw new Error('Failed to update ticket. Please try again later.');
     }
   }
 
@@ -33,7 +53,7 @@ export class HosService {
       });
       return tickets;
     } catch (error) {
-      throw new Error('na log out or something?');
+      throw new Error('Error fetching tickets.');
     }
   }
 }
