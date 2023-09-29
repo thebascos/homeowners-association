@@ -4,6 +4,7 @@
     color="primary"
     class="create-ticket-button"
     (click)="openTicketCreationDialog()"
+    style="background-color: #c3b494; color: black"
   >
     Create Ticket
   </button>
@@ -12,11 +13,45 @@
     <!-- List of Tickets -->
     <div *ngFor="let ticket of tickets" class="ticket">
       <mat-card class="custom-card">
-        <p>{{ ticket.status }}</p>
-
+        <p class="date-created">
+          Date Created: {{ ticket.createdAt | date : "MM/dd/yyyy" }}
+        </p>
+        <p *ngIf="!ticket.editing">{{ ticket.status }}</p>
+        <select
+          style="width: 80px"
+          *ngIf="ticket.editing"
+          [(ngModel)]="ticket.status"
+          class="status-select custom-card"
+        >
+          <option value="PENDING">Pending</option>
+          <option value="RESOLVED">Resolved</option>
+        </select>
         <div class="ticket-details">
-          <h2>{{ ticket.description }}</h2>
-          <p class="category">{{ ticket.category }}</p>
+          <h2 *ngIf="!ticket.editing" class="ticket-description">
+            {{ ticket.description }}
+          </h2>
+          <textarea
+            *ngIf="ticket.editing"
+            [(ngModel)]="ticket.description"
+            class="app-style"
+          ></textarea>
+          <button
+            (click)="toggleEditMode(ticket)"
+            class="edit-button"
+            *ngIf="ticket.editing || ticket.status !== 'RESOLVED'"
+          >
+            {{ ticket.editing ? "Save" : "Edit" }}
+          </button>
+          <p *ngIf="!ticket.editing" class="category">{{ ticket.category }}</p>
+          <select
+            style="width: 120px"
+            *ngIf="ticket.editing"
+            [(ngModel)]="ticket.category"
+            class="status-select custom-card category"
+          >
+            <option value="COMPLAINT">COMPLAINT</option>
+            <option value="MAINTENANCE">MAINTENANCE</option>
+          </select>
         </div>
       </mat-card>
     </div>

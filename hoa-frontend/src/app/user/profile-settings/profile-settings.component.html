@@ -1,52 +1,64 @@
-<div class="app-style my-class-log profile-settings">
-  <h2>Edit Profile</h2>
-  <form (ngSubmit)="onSubmit()">
+<div class="profile-settings-parent">
+  <h2 style="text-align: center">Edit Profile</h2>
+  <form (ngSubmit)="onSubmit()" class="profile-settings-parent-input">
     <div>
-      <label for="name">Name</label>
-      <input
-        class="my-class input"
-        type="text"
-        id="name"
-        name="name"
-        [(ngModel)]="user.name"
-        required
-      />
+      <mat-form-field class="custom-input">
+        <mat-label for="name">Name</mat-label>
+        <input
+          matInput
+          type="text"
+          id="name"
+          name="name"
+          [(ngModel)]="user.name"
+          required
+        />
+      </mat-form-field>
+    </div>
+    <div class="profile-settings-parent-input">
+      <mat-form-field class="custom-input">
+        <mat-label for="email">Email</mat-label>
+        <input
+          matInput
+          type="email"
+          id="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+        />
+      </mat-form-field>
     </div>
     <div>
-      <label for="email">Email</label>
-      <input
-        class="my-class input"
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="user.email"
-        required
-      />
+      <mat-form-field class="custom-input">
+        <mat-label for="password">Password</mat-label>
+        <input
+          matInput
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="user.password"
+          required
+        />
+      </mat-form-field>
     </div>
     <div>
-      <label for="password">Password</label>
-      <input
-        class="my-class input"
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="user.password"
-        required
-      />
+      <mat-form-field class="custom-input">
+        <mat-label for="houseCode">House Code</mat-label>
+        <input
+          matInput
+          type="text"
+          id="houseCode"
+          name="houseCode"
+          [(ngModel)]="user.houseCode"
+          readonly
+        />
+      </mat-form-field>
     </div>
     <div>
-      <label for="houseCode">House Code</label>
-      <input
-        class="my-class input"
-        type="text"
-        id="houseCode"
-        name="houseCode"
-        [(ngModel)]="user.houseCode"
-        readonly
-      />
-    </div>
-    <div>
-      <button type="submit">Save Changes</button>
+      <div style="display: flex; justify-content: center; border-radius: 3rem">
+        <button type="submit" mat-raised-button style="background-color: grey">
+          Save Changes
+        </button>
+      </div>
       <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
     </div>
   </form>

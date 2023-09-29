@@ -2,6 +2,8 @@ export interface CreateTicketDTO {
   description: string;
   category: TicketCategory;
   status?: TicketStatus;
+  id: string;
+  createdAt: Date;
 }
 
 enum TicketCategory {

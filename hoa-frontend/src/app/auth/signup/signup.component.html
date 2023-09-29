@@ -19,15 +19,15 @@
       />
     </div>
     <div>
-      <label for="houseCode">Selecct House number</label>
+      <label for="houseCode">House number</label>
       <select id="houseCode" formControlName="houseCode" required>
-        <option value="" disabled>Select an option</option>
         <option [value]="houseCodes.HOUSE_1">House 1</option>
         <option [value]="houseCodes.HOUSE_2">House 2</option>
         <option [value]="houseCodes.HOUSE_3">House 3</option>
       </select>
     </div>
-    <button type="submit">Sign Up</button>
+
+    <button type="submit" style="margin-top: 20px">Sign Up</button>
     <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
   </form>
 </div>

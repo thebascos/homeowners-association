@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
-import { TicketDTO } from '../auth/dto/ticket.dto';
+import { EditTicketDTO, TicketDTO } from '../auth/dto/ticket.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +57,25 @@ export class UserService {
     return this.http.post<any>(
       `${this.baseUrl}/hos/create-ticket`,
       ticketData,
+      {
+        headers,
+      }
+    );
+  }
+
+  updateTicket$(
+    ticketId: string,
+    updatedTicketData: EditTicketDTO
+  ): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('log out or something?');
+    }
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.put<any>(
+      `${this.baseUrl}/hos/ticket/${ticketId}`,
+      updatedTicketData,
       {
         headers,
       }

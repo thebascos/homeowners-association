@@ -2,6 +2,7 @@ export interface SignUpDTO {
   email: string;
   password: string;
   name: string;
+  admin?: boolean;
   houseCode: HouseCode | null;
 }
 export enum HouseCode {
