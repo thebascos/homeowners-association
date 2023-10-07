@@ -16,9 +16,9 @@ model HO {
   updatedAt                 DateTime @updatedAt
   name                      String
   email                     String @unique
-  admin                     Boolean
+  admin                     Boolean @default(false) 
   password                  String
-  houseCode                 String?
+  houseCode                 String
   tickets                   Ticket[]
 }
 
