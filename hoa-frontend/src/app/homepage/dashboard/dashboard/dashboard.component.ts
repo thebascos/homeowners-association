@@ -21,7 +21,6 @@ export class DashboardComponent implements OnInit {
     this.sharedService.getTickets().subscribe((tickets) => {
       this.tickets = tickets;
 
-      // Check if this.tickets is defined before filtering
       if (this.tickets) {
         this.pendingTickets = this.tickets.filter(
           (ticket) => ticket.status === TicketStatus.PENDING

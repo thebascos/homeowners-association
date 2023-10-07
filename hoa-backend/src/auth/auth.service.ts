@@ -29,7 +29,6 @@ export class AuthService {
     }
 
     if (user.password === existingUser.password) {
-      // console.log(existingUser.email);
       return existingUser;
     } else {
       throw new UnauthorizedException('Wrong password!');
@@ -68,7 +67,6 @@ export class AuthService {
         email: user.email,
         password: user.password,
         houseCode: user.houseCode,
-        admin: user.admin,
       },
     });
 

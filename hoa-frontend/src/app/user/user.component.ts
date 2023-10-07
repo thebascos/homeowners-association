@@ -19,7 +19,6 @@ export class UserComponent implements OnInit {
     private userService: UserService,
     private dialog: MatDialog,
     private router: Router,
-    private cdr: ChangeDetectorRef,
     private sharedService: SharedService
   ) {}
 
