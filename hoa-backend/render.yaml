@@ -1,0 +1,4 @@
+buildCommand: npm i && npx prisma migrate deploy && npm run build
+environment:
+  - name: NODE_VERSION
+    value: 16
