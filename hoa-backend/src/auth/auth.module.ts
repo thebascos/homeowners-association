@@ -9,7 +9,6 @@ import { UserController } from './user/user.controller';
   imports: [
     JwtModule.register({
       secret: 'imong mama',
-      signOptions: { expiresIn: '1h' }, // Optional: Set token expiration
     }),
   ],
   controllers: [AuthController, UserController],
