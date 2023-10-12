@@ -16,6 +16,9 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'))
   @Get('/tickets')
   async getTickets(@Request() req) {
-    return await this.authservice.getTicketsByUserId(req.user.id);
+    return await this.authservice.getTicketsByUserId(
+      req.user.id,
+      req.user.admin,
+    );
   }
 }

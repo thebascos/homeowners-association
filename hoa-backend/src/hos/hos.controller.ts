@@ -11,6 +11,7 @@ import {
 import { CreateTicketDTO } from './dto/create-ticket.dto';
 import { HosService } from './hos.service';
 import { AuthGuard } from '@nestjs/passport'; // Import AuthGuard
+import { InvoiceDTO } from 'src/auth/dto/invoice.dto';
 @Controller('hos')
 export class HosController {
   constructor(private readonly hoservice: HosService) {}
@@ -40,5 +41,11 @@ export class HosController {
     @Body() ticketData: CreateTicketDTO,
   ): Promise<any> {
     return this.hoservice.updateTicket(id, ticketData);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/create-invoice')
+  async createInvoice(@Body() invoiceData: InvoiceDTO, @Request() req) {
+    return await this.hoservice.createInvoice(req.user.id, invoiceData);
   }
 }

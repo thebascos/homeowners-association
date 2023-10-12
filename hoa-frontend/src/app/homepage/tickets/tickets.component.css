@@ -72,3 +72,6 @@
   font-size: 14px; /* Adjust the font size as needed */
   color: #333; /* Adjust the color as needed */
 }
+.custom-card .ticket-creator {
+  text-align: center;
+}

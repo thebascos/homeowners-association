@@ -106,19 +106,30 @@ export class AuthService {
     return updatedUser;
   }
 
-  async getTicketsByUserId(userId: string) {
+  async getTicketsByUserId(userId: string, isAdmin: boolean) {
     try {
-      const tickets = await this.prisma.ticket.findMany({
-        include: {
-          ho: true,
-        },
-        where: {
-          hoId: userId,
-        },
-      });
-      return tickets;
+      if (isAdmin) {
+        // If the user is an admin, return all tickets with information about who created each ticket
+        const tickets = await this.prisma.ticket.findMany({
+          include: {
+            ho: true, // Include the user who created the ticket (HO model)
+          },
+        });
+        return tickets;
+      } else {
+        // If the user is not an admin, return tickets created by the user with information about who created each ticket
+        const userTickets = await this.prisma.ticket.findMany({
+          include: {
+            ho: true, // Include the user who created the ticket (HO model)
+          },
+          where: {
+            hoId: userId,
+          },
+        });
+        return userTickets;
+      }
     } catch (error) {
-      throw new Error('na log out or something?');
+      throw new Error('An error occurred while fetching tickets.');
     }
   }
 }

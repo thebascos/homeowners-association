@@ -25,6 +25,7 @@ export class TicketsComponent implements OnInit {
       description: [''],
       status: [''],
       category: [''],
+      resolution: [''],
     });
   }
 
@@ -48,6 +49,7 @@ export class TicketsComponent implements OnInit {
         description: ticket.description,
         status: ticket.status,
         category: ticket.category,
+        resolution: ticket.resolution,
       });
       this.updateTicket(ticket);
     }
@@ -55,20 +57,26 @@ export class TicketsComponent implements OnInit {
 
   updateTicket(ticket: TicketDTO): void {
     const updatedTicketData: TicketDTO = this.editTicketForm.value;
-    this.userService.updateTicket$(ticket.id, updatedTicketData).subscribe(
-      (updatedTicket) => {
-        if (this.tickets) {
-          const index = this.tickets.findIndex((t) => t.id === ticket.id);
-          if (index !== -1) {
-            this.tickets[index] = updatedTicket;
-          }
-        }
 
-        ticket.editing = false;
-      },
-      (error) => {
-        console.error('Failed to update ticket:', error);
-      }
-    );
+    if (
+      (ticket.status === 'RESOLVED' && updatedTicketData.resolution! == null) ||
+      ''
+    ) {
+      this.userService.updateTicket$(ticket.id, updatedTicketData).subscribe(
+        (updatedTicket) => {
+          if (this.tickets) {
+            const index = this.tickets.findIndex((t) => t.id === ticket.id);
+            if (index !== -1) {
+              this.tickets[index] = updatedTicket;
+            }
+          }
+
+          ticket.editing = false;
+        },
+        (error) => {
+          console.error('Failed to update ticket:', error);
+        }
+      );
+    }
   }
 }
