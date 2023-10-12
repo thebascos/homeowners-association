@@ -17,6 +17,11 @@
           Date Created: {{ ticket.createdAt | date : "MM/dd/yyyy" }}
         </p>
         <p *ngIf="!ticket.editing">{{ ticket.status }}</p>
+        <p class="ticket-creator" *ngIf="ticket.ho.admin">
+          {{ ticket.ho.houseCode }}
+        </p>
+        <!-- Centered creator's name -->
+
         <select
           style="width: 80px"
           *ngIf="ticket.editing"
@@ -26,10 +31,30 @@
           <option value="PENDING">Pending</option>
           <option value="RESOLVED">Resolved</option>
         </select>
+        <!-- Resolution input field -->
+        <textarea
+          *ngIf="ticket.editing && ticket.status === 'RESOLVED'"
+          [(ngModel)]="ticket.resolution"
+          class="app-style"
+          placeholder="Enter resolution"
+        ></textarea>
+        <!-- Error message for missing resolution when saving -->
+        <div
+          *ngIf="ticket.status === 'RESOLVED' && !ticket.resolution"
+          class="error-message"
+        >
+          Resolution is required before saving.
+        </div>
         <div class="ticket-details">
           <h2 *ngIf="!ticket.editing" class="ticket-description">
             {{ ticket.description }}
           </h2>
+          <h3
+            *ngIf="!ticket.editing && ticket.status === 'RESOLVED'"
+            class="resolution"
+          >
+            Resolution: {{ ticket.resolution }}
+          </h3>
           <textarea
             *ngIf="ticket.editing"
             [(ngModel)]="ticket.description"
@@ -38,7 +63,10 @@
           <button
             (click)="toggleEditMode(ticket)"
             class="edit-button"
-            *ngIf="ticket.editing || ticket.status !== 'RESOLVED'"
+            *ngIf="
+              ticket.editing ||
+              (ticket.status !== 'RESOLVED' && !ticket.resolution)
+            "
           >
             {{ ticket.editing ? "Save" : "Edit" }}
           </button>

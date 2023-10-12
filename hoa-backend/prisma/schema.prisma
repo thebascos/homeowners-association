@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -19,7 +16,8 @@ model HO {
   admin                     Boolean @default(false) 
   password                  String
   houseCode                 String
-  tickets                   Ticket[]
+  tickets                   Ticket[] 
+  invoices                  Invoice[] 
 }
 
 model Ticket {
@@ -30,6 +28,17 @@ model Ticket {
   status      String @default("PENDING") 
   category    String
   hoId        String
+  resolution  String @default("")
   ho          HO           @relation(fields: [hoId], references: [id])
+}
+
+model Invoice {
+  id          String       @id @default(uuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  hoId        String
+  ho          HO           @relation( fields: [hoId], references: [id])
+  invoiceName String
+  amount      Float
 }
 

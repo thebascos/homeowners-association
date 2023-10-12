@@ -6,6 +6,12 @@ export interface TicketDTO {
   status?: TicketStatus;
   editing?: boolean;
   formattedCreatedAt?: Date;
+  resolution?: string;
+  ho: {
+    name: string;
+    houseCode: string;
+    admin: boolean;
+  };
 }
 
 export interface EditTicketDTO {
@@ -14,6 +20,12 @@ export interface EditTicketDTO {
   category: TicketCategory;
   status?: TicketStatus;
   editing?: boolean;
+  resolution?: string;
+  ho: {
+    name: string;
+    houseCode: string;
+    admin: boolean;
+  };
 }
 export enum TicketCategory {
   MAINTENANCE = 'MAINTENANCE',
