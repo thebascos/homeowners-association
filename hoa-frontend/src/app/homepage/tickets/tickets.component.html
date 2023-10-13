@@ -17,7 +17,7 @@
           Date Created: {{ ticket.createdAt | date : "MM/dd/yyyy" }}
         </p>
         <p *ngIf="!ticket.editing">{{ ticket.status }}</p>
-        <p class="ticket-creator" *ngIf="ticket.ho.admin">
+        <p class="ticket-creator">
           {{ ticket.ho.houseCode }}
         </p>
         <!-- Centered creator's name -->
