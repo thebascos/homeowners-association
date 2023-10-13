@@ -5,6 +5,7 @@ import {
   Put,
   UseGuards,
   Request,
+  Get,
 } from '@nestjs/common';
 import { LogInDTO } from './dto/login.dto';
 import { AuthService } from './auth.service';
@@ -50,5 +51,11 @@ export class AuthController {
   ): Promise<{ message: string }> {
     await this.authservice.updateUser(req.user.id, editUserDTO);
     return { message: 'User information updated successfully' };
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/users')
+  getAllUsers() {
+    return this.authservice.getAllUsers();
   }
 }

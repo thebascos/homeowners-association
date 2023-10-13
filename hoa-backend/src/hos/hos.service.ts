@@ -58,18 +58,39 @@ export class HosService {
       throw new Error('Error fetching tickets.');
     }
   }
-  async createInvoice(hoId: string, invoice: InvoiceDTO): Promise<any> {
+  async createInvoice(invoice: InvoiceDTO): Promise<any> {
+    const newInvoice = await this.prismaService.invoice.create({
+      data: {
+        hoId: invoice.hoId,
+        invoiceName: invoice.invoiceName,
+        amount: invoice.amount,
+      },
+    });
+    return newInvoice;
+  }
+
+  async getInvoicesByUserId(hoId: string, isAdmin: boolean) {
     try {
-      const newInvoice = await this.prismaService.invoice.create({
-        data: {
-          hoId: hoId,
-          invoiceName: invoice.invoiceName,
-          amount: invoice.amount,
-        },
-      });
-      return newInvoice;
+      if (isAdmin) {
+        const invoices = await this.prismaService.invoice.findMany({
+          include: {
+            ho: true,
+          },
+        });
+        return invoices;
+      } else {
+        const userInvoices = await this.prismaService.invoice.findMany({
+          include: {
+            ho: true,
+          },
+          where: {
+            hoId: hoId,
+          },
+        });
+        return userInvoices;
+      }
     } catch (error) {
-      throw new Error('Failed to create a ticket');
+      throw new Error('An error occurred while fetching invoices.');
     }
   }
 }

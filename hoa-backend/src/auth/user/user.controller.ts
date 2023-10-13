@@ -21,4 +21,13 @@ export class UserController {
       req.user.admin,
     );
   }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/invoice')
+  async getInvoices(@Request() req) {
+    return await this.authservice.getInvoicesByUserId(
+      req.user.id,
+      req.user.admin,
+    );
+  }
 }

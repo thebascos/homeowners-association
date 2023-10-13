@@ -1,0 +1,65 @@
+.bills {
+  height: 100%;
+  width: 100%;
+}
+
+.fixed-textarea {
+  height: 100px;
+  width: 200px;
+}
+
+.custom-tabs {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  color: black;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.create-invoice-tab {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 60%;
+  height: 100%; /* Ensure the form takes up the full height of the tab content */
+}
+.invoice-list-tab {
+  margin-top: 50px;
+  display: flex; /* Use Flexbox for layout */
+  flex-direction: column; /* Arrange cards vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 100%;
+}
+
+.create-invoice-tab button {
+  font-size: 15px;
+  border-radius: 10px;
+  height: 30px;
+  text-align: center;
+}
+.tab-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.custom-card {
+  background-color: #a7967b; /* Set the background color */
+  margin: 10px; /* Add margin to space cards 10px apart */
+  width: 500px; /* Set the custom width */
+  white-space: normal;
+}
+.center-house-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  width: 100%;
+}

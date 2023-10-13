@@ -7,6 +7,7 @@ import { ProfileSettingsComponent } from './user/profile-settings/profile-settin
 import { TicketsComponent } from './homepage/tickets/tickets.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './homepage/dashboard/dashboard/dashboard.component';
+import { InvoiceComponent } from './homepage/invoice/invoice.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'tickets', component: TicketsComponent },
+      { path: 'bills', component: InvoiceComponent },
     ],
   },
 ];

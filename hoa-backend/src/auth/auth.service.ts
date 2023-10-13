@@ -132,4 +132,37 @@ export class AuthService {
       throw new Error('An error occurred while fetching tickets.');
     }
   }
+  async getAllUsers() {
+    const regularUsers = await this.prisma.hO.findMany({
+      where: {
+        admin: false,
+      },
+    });
+    return regularUsers;
+  }
+
+  async getInvoicesByUserId(hoId: string, isAdmin: boolean) {
+    try {
+      if (isAdmin) {
+        const invoices = await this.prisma.invoice.findMany({
+          include: {
+            ho: true,
+          },
+        });
+        return invoices;
+      } else {
+        const userInvoices = await this.prisma.invoice.findMany({
+          include: {
+            ho: true,
+          },
+          where: {
+            hoId: hoId,
+          },
+        });
+        return userInvoices;
+      }
+    } catch (error) {
+      throw new Error('An error occurred while fetching invoices.');
+    }
+  }
 }
