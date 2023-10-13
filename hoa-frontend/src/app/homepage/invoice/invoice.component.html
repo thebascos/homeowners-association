@@ -1,0 +1,79 @@
+<div class="app-style bills app-border">
+  <div class="custom-tabs">
+    <!-- Custom Tab for displaying the invoice list -->
+    <div
+      class="custom-tab app-style"
+      [class.active-tab]="activeTab === 'invoiceList'"
+      (click)="activateTab('invoiceList')"
+    >
+      Invoice List
+    </div>
+
+    <!-- Custom Tab for creating invoices -->
+    <div
+      *ngIf="user?.admin"
+      class="custom-tab app-style"
+      [class.active-tab]="activeTab === 'createInvoice'"
+      (click)="activateTab('createInvoice')"
+    >
+      Create Invoice
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Content for the active tab goes here -->
+    <div class="invoice-list-tab app-style" *ngIf="activeTab === 'invoiceList'">
+      <!-- Render invoice information using mat-card -->
+      <mat-card *ngFor="let invoice of invoices" class="custom-card">
+        <mat-card-header>
+          <div class="center-house-code">
+            <span>{{ invoice.ho.houseCode }}</span>
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            <mat-card-title>{{ invoice.invoiceName }}</mat-card-title>
+          </p>
+          <p>Amount: {{ invoice.amount }}</p>
+          <!-- Add more details if needed -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <div class="create-invoice-tab" *ngIf="activeTab === 'createInvoice'">
+      <form [formGroup]="invoiceForm" (ngSubmit)="submitInvoice()">
+        <div class="form-group">
+          <textarea
+            id="invoiceName"
+            formControlName="invoiceName"
+            required
+            rows="4"
+            class="app-style fixed-textarea"
+            placeholder="Please describe what the bill is for"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="amount">Amount: </label>
+          <input
+            class="app-style"
+            type="number"
+            id="amount"
+            formControlName="amount"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="hoId">Assign to: </label>
+          <select class="app-style" id="hoId" formControlName="hoId" required>
+            <option *ngFor="let user of users" [value]="user.id">
+              {{ user.houseCode }}
+            </option>
+          </select>
+        </div>
+        <button color="primary" class="app-style" type="submit">
+          Create Invoice
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

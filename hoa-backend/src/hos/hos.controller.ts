@@ -45,7 +45,16 @@ export class HosController {
 
   @UseGuards(AuthGuard('jwt'))
   @Post('/create-invoice')
-  async createInvoice(@Body() invoiceData: InvoiceDTO, @Request() req) {
-    return await this.hoservice.createInvoice(req.user.id, invoiceData);
+  async createInvoice(@Body() invoiceData: InvoiceDTO) {
+    return await this.hoservice.createInvoice(invoiceData);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/invoice')
+  async getInvoices(@Request() req) {
+    return await this.hoservice.getInvoicesByUserId(
+      req.user.id,
+      req.user.admin,
+    );
   }
 }

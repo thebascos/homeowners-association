@@ -26,6 +26,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { DashboardComponent } from './homepage/dashboard/dashboard/dashboard.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { InvoiceComponent } from './homepage/invoice/invoice.component';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { MatButtonModule } from '@angular/material/button';
     HomeComponent,
     CreateTicketDialogComponent,
     DashboardComponent,
+    InvoiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatInputModule,
     MatButtonModule,
+    MatTabsModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent],

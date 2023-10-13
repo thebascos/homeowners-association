@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { EditTicketDTO, TicketDTO } from '../auth/dto/ticket.dto';
+import { InvoiceDTO } from '../auth/dto/invoice.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -86,5 +87,32 @@ export class UserService {
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<any>(`${this.baseUrl}/user/tickets`, { headers });
+  }
+  getAllUsers(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.baseUrl}/auth/users`, { headers });
+  }
+  getInvoices(): Observable<any> {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<any>(`${this.baseUrl}/user/invoice`, { headers });
+  }
+
+  createInvoice(invoiceDTO: InvoiceDTO): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Authentication token not found.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(
+      `${this.baseUrl}/hos/create-invoice`,
+      invoiceDTO,
+      {
+        headers,
+      }
+    );
   }
 }
