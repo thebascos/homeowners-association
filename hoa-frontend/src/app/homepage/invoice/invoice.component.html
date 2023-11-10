@@ -43,9 +43,11 @@
           >
             Pay
           </button>
-          <p *ngIf="invoice.paid" style="color: red; text-align: right">PAID</p>
-          <p *ngIf="!invoice.paid" style="color: red; text-align: right">
+          <p *ngIf="invoice.paid" style="color: black; text-align: right">
             PAID
+          </p>
+          <p *ngIf="!invoice.paid" style="color: red; text-align: right">
+            NOT PAID
           </p>
           <div #cardElement id="card"></div>
         </mat-card-content>
