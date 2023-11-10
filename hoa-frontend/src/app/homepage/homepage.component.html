@@ -8,38 +8,31 @@
   </div>
   <div class="list-section">
     <ul class="nav-menu">
-      <div>
-        <!-- Dashboard Link -->
-        <li>
-          <a [routerLink]="['/home/dashboard']" routerLinkActive="active"
-            >Dashboard</a
-          >
-        </li>
-      </div>
-      <div>
-        <li>
-          <a [routerLink]="['/home/tickets']" routerLinkActive="active"
-            >Tickets</a
-          >
-        </li>
-      </div>
-      <div>
-        <li>
-          <a [routerLink]="['/tickets']" routerLinkActive="active">Events</a>
-        </li>
-      </div>
-      <div>
-        <li>
-          <a [routerLink]="['/home/bills']" routerLinkActive="active">Bills</a>
-        </li>
-      </div>
-      <div>
-        <li>
-          <a [routerLink]="['/tickets']" routerLinkActive="active"
-            >Community Market</a
-          >
-        </li>
-      </div>
+      <li>
+        <a [routerLink]="['/home/dashboard']" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon> Dashboard
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/tickets']" routerLinkActive="active">
+          <mat-icon>receipt</mat-icon> Tickets
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/tickets']" routerLinkActive="active">
+          <mat-icon>event</mat-icon> Events
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/bills']" routerLinkActive="active">
+          <mat-icon>monetization_on</mat-icon> Bills
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/tickets']" routerLinkActive="active">
+          <mat-icon>store</mat-icon> Community Market
+        </a>
+      </li>
     </ul>
   </div>
   <div>

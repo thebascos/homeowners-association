@@ -36,6 +36,18 @@
           </p>
           <p>Amount: {{ invoice.amount }}</p>
           <!-- Add more details if needed -->
+          <button
+            mat-flat-button
+            *ngIf="!invoice.paid && !user?.admin"
+            (click)="payForInvoice(invoice)"
+          >
+            Pay
+          </button>
+          <p *ngIf="invoice.paid" style="color: red; text-align: right">PAID</p>
+          <p *ngIf="!invoice.paid" style="color: red; text-align: right">
+            PAID
+          </p>
+          <div #cardElement id="card"></div>
         </mat-card-content>
       </mat-card>
     </div>

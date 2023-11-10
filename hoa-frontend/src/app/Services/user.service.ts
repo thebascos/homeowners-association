@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { EditTicketDTO, TicketDTO } from '../auth/dto/ticket.dto';
-import { InvoiceDTO } from '../auth/dto/invoice.dto';
+import { GetInvoiceDTO, InvoiceDTO } from '../auth/dto/invoice.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -110,6 +110,36 @@ export class UserService {
     return this.http.post<any>(
       `${this.baseUrl}/hos/create-invoice`,
       invoiceDTO,
+      {
+        headers,
+      }
+    );
+  }
+
+  createPaymentIntent(paymentData: GetInvoiceDTO): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Authentication token not found.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(`${this.baseUrl}/hos/payment`, paymentData, {
+      headers,
+    });
+  }
+
+  createCheckoutSession(invoice: GetInvoiceDTO): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Authentication token not found.');
+    }
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.post<any>(
+      `${this.baseUrl}/hos/create-checkout-session`,
+      invoice,
       {
         headers,
       }

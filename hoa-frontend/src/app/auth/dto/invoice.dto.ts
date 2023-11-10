@@ -9,4 +9,5 @@ export interface GetInvoiceDTO {
   ho: {
     houseCode: string;
   };
+  paid: boolean;
 }

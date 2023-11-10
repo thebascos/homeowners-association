@@ -69,6 +69,29 @@ export class HosService {
     return newInvoice;
   }
 
+  async editInvoice(
+    invoiceId: string,
+    updatedInvoiceData: Partial<InvoiceDTO>,
+  ): Promise<InvoiceDTO | null> {
+    // Find the existing invoice by ID
+    const existingInvoice = await this.prismaService.invoice.findUnique({
+      where: { id: invoiceId },
+    });
+
+    if (!existingInvoice) {
+      // Invoice not found
+      return null;
+    }
+
+    // Update the existing invoice with the new data
+    const updatedInvoice = await this.prismaService.invoice.update({
+      where: { id: invoiceId },
+      data: updatedInvoiceData,
+    });
+
+    return updatedInvoice;
+  }
+
   async getInvoicesByUserId(hoId: string, isAdmin: boolean) {
     try {
       if (isAdmin) {
