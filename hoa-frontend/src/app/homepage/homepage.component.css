@@ -2,12 +2,14 @@
 .home-page {
   height: 100%;
 }
+
 .home-page-header {
   border-bottom: 3px solid black;
   width: 100%;
   height: 7rem;
   display: flex;
 }
+
 .landing-page-header {
   display: flex;
   flex-direction: column;
@@ -25,6 +27,7 @@
   border-bottom: 3px solid black;
   border-left: 3px solid black;
 }
+
 .list-section {
   flex-grow: 1;
   overflow-y: auto;
@@ -47,17 +50,30 @@
 /* Style the links */
 .link-list-section .nav-menu a {
   text-decoration: none;
-  color: #333; /* Adjust the link color as needed */
-  font-family: Arial, sans-serif; /* Set the font family to Arial */
-  font-size: 20px; /* Set the font size to 20px */
-  font-weight: bold; /* Adjust the font-weight as needed */
+  color: #3e2723; /* Woody brown color */
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center; /* Align the icon and text vertically */
+  transition: color 0.3s ease; /* Smooth transition for color change */
 }
-.active {
-  color: blue; /* Change the color to gray for active links */
-  font-weight: bold; /* You can add additional styles as needed */
+
+/* Add Font Awesome for icons */
+.link-list-section .nav-menu a::before {
+  font-family: "Font Awesome"; /* Replace with the actual font family used for icons */
+  margin-right: 10px; /* Add spacing between the icon and text */
+}
+
+/* Style the active link */
+.link-list-section .nav-menu a.active {
+  color: #795548; /* Darker brown for the active link */
 }
 
 /* Style the user profile component */
 .link-list-section .user-profile {
   /* Add any specific styles you want for the user profile component */
+}
+.nav-menu a mat-icon {
+  margin-right: 10px;
 }

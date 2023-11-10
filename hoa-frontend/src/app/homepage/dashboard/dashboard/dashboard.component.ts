@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from 'src/app/Services/shared.service';
 import { UserService } from 'src/app/Services/user.service';
+import { GetInvoiceDTO } from 'src/app/auth/dto/invoice.dto';
 import { TicketDTO, TicketStatus } from 'src/app/auth/dto/ticket.dto';
 
 @Component({
@@ -10,6 +11,8 @@ import { TicketDTO, TicketStatus } from 'src/app/auth/dto/ticket.dto';
 })
 export class DashboardComponent implements OnInit {
   tickets: TicketDTO[] | undefined;
+  invoices: GetInvoiceDTO[] | undefined;
+
   pendingTickets: TicketDTO[] | undefined;
 
   constructor(
@@ -26,6 +29,9 @@ export class DashboardComponent implements OnInit {
           (ticket) => ticket.status === TicketStatus.PENDING
         );
       }
+    });
+    this.sharedService.getInvoices().subscribe((invoices) => {
+      this.invoices = invoices?.filter((invoice) => !invoice.paid);
     });
   }
 }

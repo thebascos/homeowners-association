@@ -37,6 +37,7 @@ model Invoice {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   hoId        String
+  paid      Boolean       @default(false)
   ho          HO           @relation( fields: [hoId], references: [id])
   invoiceName String
   amount      Float
