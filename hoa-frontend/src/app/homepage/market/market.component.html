@@ -1,0 +1,99 @@
+<!-- market.component.html -->
+
+<div class="app-style market app-border">
+  <div class="custom-tabs">
+    <!-- Custom Tab for displaying the product list -->
+    <div
+      class="custom-tab app-style"
+      [class.active-tab]="activeTab === 'productList'"
+      (click)="activateTab('productList')"
+    >
+      Products
+    </div>
+
+    <!-- Custom Tab for creating orders -->
+    <div
+      class="custom-tab app-style"
+      [class.active-tab]="activeTab === 'ordersTab'"
+      (click)="activateTab('ordersTab')"
+    >
+      Orders
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <div>
+      <div class="button-container">
+        <button class="products-button" (click)="openCreateProductDialog()">
+          Create Product
+        </button>
+        <button class="products-button" (click)="toggleUserProducts()">
+          {{ !showUserProducts ? "Show All Products" : "Show My Products" }}
+        </button>
+      </div>
+      <div
+        class="product-list-tab app-style"
+        *ngIf="activeTab === 'productList'"
+      >
+        <div *ngFor="let product of products">
+          <div class="product-card">
+            <div *ngIf="product.editing; else viewMode" class="edit-mode">
+              <form (ngSubmit)="updateProduct(product)">
+                <input
+                  type="text"
+                  [(ngModel)]="product.description"
+                  name="description"
+                  required
+                />
+                <input
+                  type="number"
+                  [(ngModel)]="product.price"
+                  name="price"
+                  required
+                />
+
+                <select [(ngModel)]="product.status" name="status" required>
+                  <option
+                    *ngFor="let status of productStatusOptions"
+                    [value]="status"
+                  >
+                    {{ status }}
+                  </option>
+                </select>
+                <div style="display: flex">
+                  <button type="submit" class="save-button">Save</button>
+                  <button
+                    type="button"
+                    (click)="cancelEdit(product)"
+                    class="cancel-button"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </div>
+            <ng-template #viewMode>
+              <p style="text-align: center">{{ product.ho.houseCode }}</p>
+              <h3 (click)="enableEditMode(product)" *ngIf="!product.editing">
+                {{ product.description }}
+              </h3>
+              <p
+                (click)="enableEditMode(product)"
+                *ngIf="!product.editing"
+                class="price"
+              >
+                {{ product.price | currency : "PHP" : "symbol" : "1.2-2" }}
+              </p>
+              <p style="text-align: right">{{ product.status }}</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="create-order-tab" *ngIf="activeTab === 'ordersTab'">
+      <!-- Placeholder content for the create order tab -->
+      <p>Create Order Content Goes Here</p>
+    </div>
+  </div>
+</div>

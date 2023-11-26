@@ -1,0 +1,111 @@
+/* Container Styles */
+.market {
+  height: 100%;
+  width: 100%;
+}
+
+/* Custom Tabs Styles */
+.custom-tabs {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+  color: black;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  width: 100%;
+}
+
+/* Tab Content Styles */
+.tab-content {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+.button-container {
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* Product List Tab Styles */
+.product-list-tab {
+  margin-left: 10px;
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 20px;
+}
+
+.product-card {
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Styles */
+.products-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+  background-color: #a7967b;
+}
+
+/* Form Styles */
+.product-list-tab form {
+  margin: 10px;
+  padding: 15px;
+}
+
+.product-list-tab form input,
+.product-list-tab form select,
+.product-list-tab form button {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.product-list-tab form button {
+  background-color: #a7967b;
+}
+
+/* Card Content Styles */
+.mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Heading Styles */
+h3 {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+/* Paragraph Styles */
+p {
+  margin: 5px 0;
+  font-size: 1em;
+  color: #555;
+  margin-right: 5px;
+}
+
+/* Price Styles */
+.price {
+  margin-left: 5px;
+  font-size: 1.2em;
+  color: #e44d26;
+  font-weight: bold;
+}

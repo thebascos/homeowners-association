@@ -11,7 +11,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserComponent } from './user/user.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -28,6 +28,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { InvoiceComponent } from './homepage/invoice/invoice.component';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MarketComponent } from './homepage/market/market.component';
+import { CreateProductDialogComponent } from './homepage/market/create-product-dialog/create-product-dialog.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { MatTabsModule } from '@angular/material/tabs';
     CreateTicketDialogComponent,
     DashboardComponent,
     InvoiceComponent,
+    MarketComponent,
+    CreateProductDialogComponent,
   ],
   imports: [
     BrowserModule,

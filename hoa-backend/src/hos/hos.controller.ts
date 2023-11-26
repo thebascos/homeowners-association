@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -13,6 +14,7 @@ import { HosService } from './hos.service';
 import { AuthGuard } from '@nestjs/passport'; // Import AuthGuard
 import { InvoiceDTO } from 'src/auth/dto/invoice.dto';
 import { Stripe } from 'stripe';
+import { CreateProductDTO, EditProductDTO } from 'src/auth/dto/product.dto';
 
 @Controller('hos')
 export class HosController {
@@ -108,5 +110,28 @@ export class HosController {
       console.error(error);
       throw error; // Rethrow the error for proper error handling middleware to catch
     }
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/create-product')
+  createProduct(@Body() productData: CreateProductDTO, @Request() req) {
+    return this.hoservice.createProduct(productData, req.user.id);
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/products')
+  async getProducts(
+    @Request() req,
+    @Query('allProducts') allProducts?: boolean,
+  ) {
+    return await this.hoservice.getProducts(req.user.id, allProducts);
+  }
+
+  @Put('/products/:id')
+  async editProduct(
+    @Param('id') productId: string,
+    @Body() editProductDTO: EditProductDTO,
+  ): Promise<any> {
+    return this.hoservice.editProduct(productId, editProductDTO);
   }
 }

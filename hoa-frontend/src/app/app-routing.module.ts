@@ -8,6 +8,7 @@ import { TicketsComponent } from './homepage/tickets/tickets.component';
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './homepage/dashboard/dashboard/dashboard.component';
 import { InvoiceComponent } from './homepage/invoice/invoice.component';
+import { MarketComponent } from './homepage/market/market.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'tickets', component: TicketsComponent },
       { path: 'bills', component: InvoiceComponent },
+      { path: 'market', component: MarketComponent },
     ],
   },
 ];

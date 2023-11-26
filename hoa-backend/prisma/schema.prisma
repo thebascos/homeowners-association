@@ -18,6 +18,7 @@ model HO {
   houseCode                 String
   tickets                   Ticket[] 
   invoices                  Invoice[] 
+  products                  Product[]
 }
 
 model Ticket {
@@ -32,6 +33,16 @@ model Ticket {
   ho          HO           @relation(fields: [hoId], references: [id])
 }
 
+model Product {
+  id          String       @id @default(uuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  description String
+  status      String        @default("AVAILABLE")
+  price       Float
+  hoId        String
+  ho          HO           @relation(fields: [hoId], references: [id])
+}
 model Invoice {
   id          String       @id @default(uuid())
   createdAt   DateTime     @default(now())

@@ -6,6 +6,7 @@ import {
   UseGuards,
   Request,
   Get,
+  Query,
 } from '@nestjs/common';
 import { LogInDTO } from './dto/login.dto';
 import { AuthService } from './auth.service';
@@ -57,5 +58,14 @@ export class AuthController {
   @Get('/users')
   getAllUsers() {
     return this.authservice.getAllUsers();
+  }
+
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/products')
+  async getProducts(
+    @Request() req,
+    @Query('allProducts') allProducts?: boolean,
+  ) {
+    return await this.authservice.getProducts(req.user.id, allProducts);
   }
 }

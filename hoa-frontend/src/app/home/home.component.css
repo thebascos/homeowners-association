@@ -5,10 +5,10 @@
 }
 
 .app-homepage {
-  flex-grow: 2; /* 40% of the space */
+  flex-grow: 10%;
 }
 
 .router-outlet {
-  flex-grow: 5; /* The rest of the space (60%) */
+  flex-grow: 100; /* The rest of the space (60%) */
   height: 100%;
 }
