@@ -15,7 +15,6 @@
   flex-direction: column;
   justify-content: center; /* Center vertically */
   align-items: center; /* Center horizontally */
-  margin-left: 7rem;
 }
 
 /* Keep the existing styles for .link-list-section */

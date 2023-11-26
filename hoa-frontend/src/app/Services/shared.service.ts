@@ -5,6 +5,7 @@ import { UserService } from './user.service';
 import { SignUpDTO } from '../auth/dto/signupdto';
 import { TicketDTO } from '../auth/dto/ticket.dto';
 import { GetInvoiceDTO } from '../auth/dto/invoice.dto';
+import { ProductDTO } from '../auth/dto/product.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,10 @@ export class SharedService {
     undefined
   );
 
+  private productSubject = new BehaviorSubject<ProductDTO[] | undefined>(
+    undefined
+  );
+
   constructor(private userService: UserService) {
     this.userService.getUserProfile().subscribe((user) => {
       this.userProfileSubject.next(user);
@@ -34,6 +39,9 @@ export class SharedService {
     this.userService.getInvoices().subscribe((invoices) => {
       this.invoiceSubject.next(invoices);
     });
+    this.userService.getProducts().subscribe((products) => {
+      this.invoiceSubject.next(products);
+    });
   }
 
   getUserProfile(): Observable<SignUpDTO | undefined> {
@@ -42,8 +50,14 @@ export class SharedService {
   getInvoices(): Observable<GetInvoiceDTO[] | undefined> {
     return this.invoiceSubject.asObservable();
   }
+  getProducts(): Observable<ProductDTO[] | undefined> {
+    return this.productSubject.asObservable();
+  }
   updateInvoices(newInvoices: GetInvoiceDTO[]): void {
     this.invoiceSubject.next(newInvoices);
+  }
+  updateProducts(newProducts: ProductDTO[]): void {
+    this.productSubject.next(newProducts);
   }
 
   setUserProfile(userProfile: SignUpDTO): void {

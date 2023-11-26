@@ -60,7 +60,6 @@ export class InvoiceComponent implements OnInit {
     });
     this.sharedService.getUserProfile().subscribe((user) => {
       this.user = user;
-      console.log(this.user);
     });
   }
 

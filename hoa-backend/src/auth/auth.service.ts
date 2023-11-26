@@ -165,4 +165,28 @@ export class AuthService {
       throw new Error('An error occurred while fetching invoices.');
     }
   }
+
+  async getProducts(hoId: string, allProducts?: boolean): Promise<any[]> {
+    let products: any[];
+
+    if (allProducts) {
+      // Get all products
+      products = await this.prisma.product.findMany({
+        include: {
+          ho: true,
+        },
+      });
+    } else {
+      // Get products for a specific user
+      products = await this.prisma.product.findMany({
+        include: {
+          ho: true,
+        },
+        where: {
+          hoId: hoId,
+        },
+      });
+    }
+    return products;
+  }
 }
