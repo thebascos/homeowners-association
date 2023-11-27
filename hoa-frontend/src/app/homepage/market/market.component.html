@@ -1,8 +1,5 @@
-<!-- market.component.html -->
-
 <div class="app-style market app-border">
   <div class="custom-tabs">
-    <!-- Custom Tab for displaying the product list -->
     <div
       class="custom-tab app-style"
       [class.active-tab]="activeTab === 'productList'"
@@ -11,7 +8,6 @@
       Products
     </div>
 
-    <!-- Custom Tab for creating orders -->
     <div
       class="custom-tab app-style"
       [class.active-tab]="activeTab === 'ordersTab'"
@@ -23,7 +19,7 @@
 
   <div class="tab-content">
     <div>
-      <div class="button-container">
+      <div class="button-container" *ngIf="activeTab === 'productList'">
         <button class="products-button" (click)="openCreateProductDialog()">
           Create Product
         </button>
@@ -92,7 +88,6 @@
     </div>
 
     <div class="create-order-tab" *ngIf="activeTab === 'ordersTab'">
-      <!-- Placeholder content for the create order tab -->
       <p>Create Order Content Goes Here</p>
     </div>
   </div>

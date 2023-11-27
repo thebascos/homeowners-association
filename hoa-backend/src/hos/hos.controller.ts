@@ -14,7 +14,11 @@ import { HosService } from './hos.service';
 import { AuthGuard } from '@nestjs/passport'; // Import AuthGuard
 import { InvoiceDTO } from 'src/auth/dto/invoice.dto';
 import { Stripe } from 'stripe';
-import { CreateProductDTO, EditProductDTO } from 'src/auth/dto/product.dto';
+import {
+  CreateOrderDTO,
+  CreateProductDTO,
+  EditProductDTO,
+} from 'src/auth/dto/product.dto';
 
 @Controller('hos')
 export class HosController {
@@ -116,6 +120,11 @@ export class HosController {
   @Post('/create-product')
   createProduct(@Body() productData: CreateProductDTO, @Request() req) {
     return this.hoservice.createProduct(productData, req.user.id);
+  }
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/create-order')
+  createOrder(@Body() orderData: CreateOrderDTO, @Request() req) {
+    return this.hoservice.createOrder(orderData, req.user.id);
   }
 
   @UseGuards(AuthGuard('jwt'))

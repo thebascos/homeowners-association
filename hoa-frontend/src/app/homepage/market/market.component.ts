@@ -1,5 +1,3 @@
-// market.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductDTO, ProductStatus } from 'src/app/auth/dto/product.dto';

@@ -8,49 +8,64 @@ datasource db {
 }
 
 model HO {
-  id                        String   @id @default(uuid())
-  createdAt                 DateTime @default(now())
-  updatedAt                 DateTime @updatedAt
-  name                      String
-  email                     String @unique
-  admin                     Boolean @default(false) 
-  password                  String
-  houseCode                 String
-  tickets                   Ticket[] 
-  invoices                  Invoice[] 
-  products                  Product[]
-}
-
-model Ticket {
-  id          String       @id @default(uuid())
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  description String
-  status      String @default("PENDING") 
-  category    String
-  hoId        String
-  resolution  String @default("")
-  ho          HO           @relation(fields: [hoId], references: [id])
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  name      String
+  email     String    @unique
+  admin     Boolean   @default(false)
+  password  String
+  houseCode String
+  tickets   Ticket[]
+  invoices  Invoice[]
+  products  Product[]
+  orders    Order[]
 }
 
 model Product {
-  id          String       @id @default(uuid())
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   description String
-  status      String        @default("AVAILABLE")
+  status      String   @default("AVAILABLE")
   price       Float
   hoId        String
-  ho          HO           @relation(fields: [hoId], references: [id])
+  ho          HO       @relation(fields: [hoId], references: [id])
+  Order       Order[]
 }
-model Invoice {
-  id          String       @id @default(uuid())
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+
+model Order {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  isPaid    Boolean  @default(false)
+  quantity  Int
+  amount    Float
+  hoId      String
+  ho        HO       @relation(fields: [hoId], references: [id])
+}
+
+model Ticket {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  description String
+  status      String   @default("PENDING")
+  category    String
   hoId        String
-  paid      Boolean       @default(false)
-  ho          HO           @relation( fields: [hoId], references: [id])
+  resolution  String   @default("")
+  ho          HO       @relation(fields: [hoId], references: [id])
+}
+
+model Invoice {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  hoId        String
+  paid        Boolean  @default(false)
+  ho          HO       @relation(fields: [hoId], references: [id])
   invoiceName String
   amount      Float
 }
-

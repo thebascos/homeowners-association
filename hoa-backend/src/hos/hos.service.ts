@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateTicketDTO } from './dto/create-ticket.dto';
 import { InvoiceDTO } from 'src/auth/dto/invoice.dto';
-import { CreateProductDTO, EditProductDTO } from 'src/auth/dto/product.dto';
+import {
+  CreateOrderDTO,
+  CreateProductDTO,
+  EditProductDTO,
+} from 'src/auth/dto/product.dto';
 
 @Injectable()
 export class HosService {
@@ -167,5 +171,17 @@ export class HosService {
     } catch (error) {
       throw new Error(`Error editing product: ${error}`);
     }
+  }
+
+  async createOrder(order: CreateOrderDTO, hoId: string): Promise<any> {
+    const newOrder = await this.prismaService.order.create({
+      data: {
+        productId: order.productId,
+        quantity: order.quantity,
+        amount: order.amount,
+        hoId: hoId,
+      },
+    });
+    return newOrder;
   }
 }
